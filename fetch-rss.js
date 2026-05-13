@@ -214,7 +214,6 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   justify-content: space-between;
   min-height: 300px;
-  max-width: 800px;
 }
 
 .hero-eyebrow {
