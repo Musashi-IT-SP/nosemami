@@ -53,21 +53,31 @@ try {
       : [];
     const category = cats[0] ?? 'Note';
 
-    // 画像URL取得: enclosure → media:content → description内の<img>の順で探す
-    let image = '';
-    if (item.enclosure?.['@_url']) {
-      image = item.enclosure['@_url'];
-    } else if (item['media:content']?.['@_url']) {
-      image = item['media:content']['@_url'];
-    } else if (item.description) {
-      const imgMatch = item.description.match(/<img[^>]+src=["']([^"']+)["']/i);
-      if (imgMatch) image = imgMatch[1];
-    }
-
-    return { title, link, desc, date, dateShort, category, image, index: i + 1 };
+    return { title, link, desc, date, dateShort, category, image: '', index: i + 1 };
   });
 
   console.log(`Fetched ${articles.length} articles.`);
+
+  // 最新記事1件だけOGP画像をスクレイピング
+  if (articles.length > 0) {
+    try {
+      console.log(`Fetching OGP image for: ${articles[0].link}`);
+      const pageRes = await fetch(articles[0].link, {
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; nosemami-bot/1.0)' }
+      });
+      if (pageRes.ok) {
+        const pageHtml = await pageRes.text();
+        const ogMatch = pageHtml.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
+                     ?? pageHtml.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+        if (ogMatch) {
+          articles[0].image = ogMatch[1];
+          console.log(`OGP image found: ${articles[0].image}`);
+        }
+      }
+    } catch (e) {
+      console.warn('OGP fetch failed:', e.message);
+    }
+  }
 } catch (e) {
   console.error('RSS fetch failed:', e.message);
   // フォールバック: 空の状態でサイトは生成する
