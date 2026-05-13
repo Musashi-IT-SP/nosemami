@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 const NOTE_RSS = 'https://note.com/nocey/rss';
-const SITE_TITLE = 'nocey';
+const SITE_TITLE = 'Nose x Note';
 const SITE_URL = 'https://nosemami.com';
 const NOTE_URL = 'https://note.com/nocey';
 
@@ -53,7 +53,18 @@ try {
       : [];
     const category = cats[0] ?? 'Note';
 
-    return { title, link, desc, date, dateShort, category, index: i + 1 };
+    // 画像URL取得: enclosure → media:content → description内の<img>の順で探す
+    let image = '';
+    if (item.enclosure?.['@_url']) {
+      image = item.enclosure['@_url'];
+    } else if (item['media:content']?.['@_url']) {
+      image = item['media:content']['@_url'];
+    } else if (item.description) {
+      const imgMatch = item.description.match(/<img[^>]+src=["']([^"']+)["']/i);
+      if (imgMatch) image = imgMatch[1];
+    }
+
+    return { title, link, desc, date, dateShort, category, image, index: i + 1 };
   });
 
   console.log(`Fetched ${articles.length} articles.`);
@@ -66,11 +77,16 @@ try {
 function articleCards(list) {
   return list.map(a => `
     <a class="card" href="${a.link}" target="_blank" rel="noopener">
-      <div class="card-num">${String(a.index).padStart(2,'0')}</div>
-      <div class="card-cat">${a.category}</div>
-      <div class="card-title">${a.title}</div>
-      <div class="card-excerpt">${a.desc}</div>
-      <div class="card-date">${a.dateShort}</div>
+      ${a.image
+        ? `<div class="card-img"><img src="${a.image}" alt="${a.title}" loading="lazy"></div>`
+        : `<div class="card-img card-img--empty"><span>${String(a.index).padStart(2,'0')}</span></div>`
+      }
+      <div class="card-body">
+        <div class="card-cat">${a.category}</div>
+        <div class="card-title">${a.title}</div>
+        <div class="card-excerpt">${a.desc}</div>
+        <div class="card-date">${a.dateShort}</div>
+      </div>
     </a>`).join('');
 }
 
@@ -134,6 +150,11 @@ body {
   min-height: 100vh;
 }
 
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 a { text-decoration: none; color: inherit; }
 
 /* ── Header ── */
@@ -187,6 +208,7 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   justify-content: space-between;
   min-height: 300px;
+  max-width: 800px;
 }
 
 .hero-eyebrow {
@@ -213,7 +235,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-title {
-  font-size: 40px;
+  font-size: 48px;
   font-weight: 900;
   line-height: 1.35;
   color: var(--text);
@@ -362,7 +384,6 @@ a { text-decoration: none; color: inherit; }
 
 .card {
   display: block;
-  padding: 28px 28px;
   border-right: 0.5px solid var(--border);
   border-top: 0.5px solid var(--border);
   cursor: pointer;
@@ -386,12 +407,38 @@ a { text-decoration: none; color: inherit; }
 .card:hover { background: var(--blue-bg); }
 .card:nth-child(3n) { border-right: none; }
 
-.card-num {
+.card-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--blue-pale);
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.card:hover .card-img img { transform: scale(1.03); }
+
+.card-img--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-img--empty span {
   font-family: var(--font-serif);
-  font-size: 36px;
-  color: var(--blue-pale);
+  font-size: 40px;
+  color: var(--blue-light);
   line-height: 1;
-  margin-bottom: 10px;
+}
+
+.card-body {
+  padding: 20px 24px 24px;
 }
 
 .card-cat {
@@ -480,8 +527,9 @@ a { text-decoration: none; color: inherit; }
 </head>
 <body>
 
+<div class="wrap">
 <header class="hdr">
-  <a class="hdr-logo" href="/">${SITE_TITLE}</a>
+  <a class="hdr-logo" href="/">Nose x Note</a>
   <nav class="hdr-nav">
     <a href="/">記事一覧</a>
     <a href="${NOTE_URL}" target="_blank" rel="noopener">noteを見る</a>
@@ -512,9 +560,14 @@ a { text-decoration: none; color: inherit; }
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-right-num">01</div>
-      <div class="hero-right-label">Latest<br>Article</div>
-      <div class="hero-right-date">${hero.dateShort}</div>
+      ${hero.image
+        ? `<img src="${hero.image}" alt="${hero.title}" style="width:100%;height:100%;object-fit:cover;display:block;">`
+        : `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0;padding:24px 16px;">
+            <div style="font-family:var(--font-serif);font-size:96px;color:rgba(255,255,255,0.12);line-height:1;letter-spacing:-0.04em;user-select:none;">01</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.24em;color:rgba(255,255,255,0.45);text-transform:uppercase;text-align:center;margin-top:10px;">Latest<br>Article</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.65);margin-top:24px;letter-spacing:0.08em;writing-mode:vertical-rl;">${hero.dateShort}</div>
+           </div>`
+      }
     </div>
   </section>
 
@@ -540,12 +593,13 @@ a { text-decoration: none; color: inherit; }
 </main>
 
 <footer class="footer">
-  <div class="footer-l">© ${new Date().getFullYear()} ${SITE_TITLE}</div>
+  <div class="footer-l">© ${new Date().getFullYear()} Nose x Note</div>
   <a class="footer-r" href="${NOTE_URL}" target="_blank" rel="noopener">
     ↗ noteでもフォロー
   </a>
 </footer>
 <p class="updated">最終更新: ${new Date().toLocaleString('ja-JP', {timeZone:'Asia/Tokyo'})}</p>
+</div>
 
 </body>
 </html>`;
