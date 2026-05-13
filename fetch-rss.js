@@ -88,7 +88,6 @@ function articleCards(list) {
   return list.map(a => `
     <a class="card" href="${a.link}" target="_blank" rel="noopener">
       <div class="card-body">
-        <div class="card-cat">${a.category}</div>
         <div class="card-title">${a.title}</div>
         <div class="card-excerpt">${a.desc}</div>
         <div class="card-date">${a.dateShort}</div>
@@ -178,6 +177,15 @@ a { text-decoration: none; color: inherit; }
   z-index: 100;
 }
 
+.hdr-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .hdr-logo {
   font-family: var(--font-serif);
   font-size: 20px;
@@ -192,7 +200,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hdr-nav a {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-muted);
   letter-spacing: 0.08em;
   transition: color 0.15s;
@@ -214,6 +222,7 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   justify-content: space-between;
   min-height: 300px;
+  max-width: 800px;
 }
 
 .hero-eyebrow {
@@ -232,7 +241,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-cat {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.22em;
   color: var(--blue);
@@ -264,14 +273,14 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-muted);
   flex-wrap: wrap;
 }
 
 .tag {
   display: inline-block;
-  font-size: 10px;
+  font-size: 13px;
   padding: 2px 9px;
   border: 1px solid var(--blue-light);
   border-radius: 2px;
@@ -281,7 +290,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-read {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--blue);
@@ -305,33 +314,6 @@ a { text-decoration: none; color: inherit; }
   padding: 32px 20px;
 }
 
-.hero-right-num {
-  font-family: var(--font-serif);
-  font-size: 96px;
-  color: rgba(255,255,255,0.12);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  user-select: none;
-}
-
-.hero-right-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  color: rgba(255,255,255,0.45);
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.hero-right-date {
-  font-size: 11px;
-  color: rgba(255,255,255,0.65);
-  margin-top: 24px;
-  letter-spacing: 0.08em;
-  writing-mode: vertical-rl;
-}
-
 /* ── Divider ── */
 .divider {
   height: 4px;
@@ -347,34 +329,10 @@ a { text-decoration: none; color: inherit; }
   background: var(--blue);
 }
 
-/* ── Section ── */
-.sec-head {
-  padding: 24px 48px 0;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.sec-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  color: var(--blue);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.sec-line {
-  flex: 1;
-  height: 0.5px;
-  background: var(--border);
-}
-
 /* ── Grid ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 0 0 0 0;
 }
 
 @media (max-width: 768px) {
@@ -384,7 +342,6 @@ a { text-decoration: none; color: inherit; }
   .hdr { padding: 0 20px; }
   .hero-left { padding: 32px 20px; }
   .hero-title { font-size: 28px; }
-  .sec-head { padding: 20px 20px 0; }
 }
 
 .card {
@@ -413,20 +370,11 @@ a { text-decoration: none; color: inherit; }
 .card:nth-child(3n) { border-right: none; }
 
 .card-body {
-  padding: 20px 24px 24px;
-}
-
-.card-cat {
-  font-size: 10px;
-  color: var(--blue);
-  letter-spacing: 0.16em;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  padding: 24px 28px;
 }
 
 .card-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.6;
   color: #111;
@@ -434,7 +382,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .card-excerpt {
-  font-size: 12px;
+  font-size: 13px;
   color: #555;
   line-height: 1.8;
   font-weight: 300;
@@ -446,7 +394,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .card-date {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--text-faint);
   letter-spacing: 0.06em;
 }
@@ -472,14 +420,25 @@ a { text-decoration: none; color: inherit; }
   gap: 10px;
 }
 
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .footer-l {
-  font-size: 11px;
+  font-size: 13px;
   color: #666;
   letter-spacing: 0.04em;
 }
 
 .footer-r {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--blue);
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -492,7 +451,7 @@ a { text-decoration: none; color: inherit; }
 .footer-r:hover { opacity: 0.7; }
 
 .updated {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--text-faint);
   text-align: center;
   padding: 10px;
@@ -502,15 +461,17 @@ a { text-decoration: none; color: inherit; }
 </head>
 <body>
 
-<div class="wrap">
 <header class="hdr">
-  <a class="hdr-logo" href="/">Nose x Note</a>
-  <nav class="hdr-nav">
-    <a href="/">記事一覧</a>
-    <a href="${NOTE_URL}" target="_blank" rel="noopener">noteを見る</a>
-  </nav>
+  <div class="hdr-inner">
+    <a class="hdr-logo" href="/">Nose x Note</a>
+    <nav class="hdr-nav">
+      <a href="/">記事一覧</a>
+      <a href="${NOTE_URL}" target="_blank" rel="noopener">noteを見る</a>
+    </nav>
+  </div>
 </header>
 
+<div class="wrap">
 <main>
   ${articles.length > 0 ? `
   <section class="hero">
@@ -539,19 +500,14 @@ a { text-decoration: none; color: inherit; }
         ? `<img src="${hero.image}" alt="${hero.title}" style="width:100%;height:100%;object-fit:cover;display:block;">`
         : `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0;padding:24px 16px;">
             <div style="font-family:var(--font-serif);font-size:96px;color:rgba(255,255,255,0.12);line-height:1;letter-spacing:-0.04em;user-select:none;">01</div>
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.24em;color:rgba(255,255,255,0.45);text-transform:uppercase;text-align:center;margin-top:10px;">Latest<br>Article</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.65);margin-top:24px;letter-spacing:0.08em;writing-mode:vertical-rl;">${hero.dateShort}</div>
+            <div style="font-size:13px;font-weight:700;letter-spacing:0.24em;color:rgba(255,255,255,0.45);text-transform:uppercase;text-align:center;margin-top:10px;">Latest<br>Article</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.65);margin-top:24px;letter-spacing:0.08em;writing-mode:vertical-rl;">${hero.dateShort}</div>
            </div>`
       }
     </div>
   </section>
 
   <div class="divider"></div>
-
-  <div class="sec-head">
-    <div class="sec-label">Recent Articles</div>
-    <div class="sec-line"></div>
-  </div>
 
   <div class="grid">
     ${restArticles.length > 0
@@ -562,19 +518,21 @@ a { text-decoration: none; color: inherit; }
   ` : `
   <div style="padding:80px 48px;text-align:center;color:#888;">
     <p style="font-size:16px;margin-bottom:8px">記事を読み込んでいます...</p>
-    <p style="font-size:12px"><a href="${NOTE_URL}" style="color:#1565C0">noteを直接見る →</a></p>
+    <p style="font-size:13px"><a href="${NOTE_URL}" style="color:#1565C0">noteを直接見る →</a></p>
   </div>
   `}
 </main>
+</div>
 
 <footer class="footer">
-  <div class="footer-l">© ${new Date().getFullYear()} Nose x Note</div>
-  <a class="footer-r" href="${NOTE_URL}" target="_blank" rel="noopener">
-    ↗ noteでもフォロー
-  </a>
+  <div class="footer-inner">
+    <div class="footer-l">© ${new Date().getFullYear()} Nose x Note</div>
+    <a class="footer-r" href="${NOTE_URL}" target="_blank" rel="noopener">
+      ↗ noteでもフォロー
+    </a>
+  </div>
 </footer>
 <p class="updated">最終更新: ${new Date().toLocaleString('ja-JP', {timeZone:'Asia/Tokyo'})}</p>
-</div>
 
 </body>
 </html>`;
