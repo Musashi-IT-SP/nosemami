@@ -58,6 +58,15 @@ a { text-decoration: none; color: inherit; }
   z-index: 100;
 }
 
+.hdr-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .hdr-logo {
   font-family: var(--font-serif);
   font-size: 20px;
@@ -72,7 +81,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hdr-nav a {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-muted);
   letter-spacing: 0.08em;
   transition: color 0.15s;
@@ -94,6 +103,7 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   justify-content: space-between;
   min-height: 300px;
+  max-width: 800px;
 }
 
 .hero-eyebrow {
@@ -112,7 +122,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-cat {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.22em;
   color: var(--blue);
@@ -144,14 +154,14 @@ a { text-decoration: none; color: inherit; }
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-muted);
   flex-wrap: wrap;
 }
 
 .tag {
   display: inline-block;
-  font-size: 10px;
+  font-size: 13px;
   padding: 2px 9px;
   border: 1px solid var(--blue-light);
   border-radius: 2px;
@@ -161,7 +171,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-read {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--blue);
@@ -185,33 +195,6 @@ a { text-decoration: none; color: inherit; }
   padding: 32px 20px;
 }
 
-.hero-right-num {
-  font-family: var(--font-serif);
-  font-size: 96px;
-  color: rgba(255,255,255,0.12);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  user-select: none;
-}
-
-.hero-right-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  color: rgba(255,255,255,0.45);
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.hero-right-date {
-  font-size: 11px;
-  color: rgba(255,255,255,0.65);
-  margin-top: 24px;
-  letter-spacing: 0.08em;
-  writing-mode: vertical-rl;
-}
-
 /* ── Divider ── */
 .divider {
   height: 4px;
@@ -227,34 +210,10 @@ a { text-decoration: none; color: inherit; }
   background: var(--blue);
 }
 
-/* ── Section ── */
-.sec-head {
-  padding: 24px 48px 0;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.sec-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.24em;
-  color: var(--blue);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.sec-line {
-  flex: 1;
-  height: 0.5px;
-  background: var(--border);
-}
-
 /* ── Grid ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 0 0 0 0;
 }
 
 @media (max-width: 768px) {
@@ -264,7 +223,6 @@ a { text-decoration: none; color: inherit; }
   .hdr { padding: 0 20px; }
   .hero-left { padding: 32px 20px; }
   .hero-title { font-size: 28px; }
-  .sec-head { padding: 20px 20px 0; }
 }
 
 .card {
@@ -293,20 +251,11 @@ a { text-decoration: none; color: inherit; }
 .card:nth-child(3n) { border-right: none; }
 
 .card-body {
-  padding: 20px 24px 24px;
-}
-
-.card-cat {
-  font-size: 10px;
-  color: var(--blue);
-  letter-spacing: 0.16em;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+  padding: 24px 28px;
 }
 
 .card-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.6;
   color: #111;
@@ -314,7 +263,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .card-excerpt {
-  font-size: 12px;
+  font-size: 13px;
   color: #555;
   line-height: 1.8;
   font-weight: 300;
@@ -326,7 +275,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .card-date {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--text-faint);
   letter-spacing: 0.06em;
 }
@@ -352,14 +301,25 @@ a { text-decoration: none; color: inherit; }
   gap: 10px;
 }
 
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .footer-l {
-  font-size: 11px;
+  font-size: 13px;
   color: #666;
   letter-spacing: 0.04em;
 }
 
 .footer-r {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--blue);
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -372,7 +332,7 @@ a { text-decoration: none; color: inherit; }
 .footer-r:hover { opacity: 0.7; }
 
 .updated {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--text-faint);
   text-align: center;
   padding: 10px;
@@ -382,15 +342,17 @@ a { text-decoration: none; color: inherit; }
 </head>
 <body>
 
-<div class="wrap">
 <header class="hdr">
-  <a class="hdr-logo" href="/">Nose x Note</a>
-  <nav class="hdr-nav">
-    <a href="/">記事一覧</a>
-    <a href="https://note.com/nocey" target="_blank" rel="noopener">noteを見る</a>
-  </nav>
+  <div class="hdr-inner">
+    <a class="hdr-logo" href="/">Nose x Note</a>
+    <nav class="hdr-nav">
+      <a href="/">記事一覧</a>
+      <a href="https://note.com/nocey" target="_blank" rel="noopener">noteを見る</a>
+    </nav>
+  </div>
 </header>
 
+<div class="wrap">
 <main>
   
   <section class="hero">
@@ -421,16 +383,10 @@ a { text-decoration: none; color: inherit; }
 
   <div class="divider"></div>
 
-  <div class="sec-head">
-    <div class="sec-label">Recent Articles</div>
-    <div class="sec-line"></div>
-  </div>
-
   <div class="grid">
     
     <a class="card" href="https://note.com/nocey/n/neab38801f216" target="_blank" rel="noopener">
       <div class="card-body">
-        <div class="card-cat">Note</div>
         <div class="card-title">奇想天外な世界で想像力と冒険心を育む絵本「ボンボとヤージュ」</div>
         <div class="card-excerpt">「ボンボとヤージュ」著：ザ・キャビンカンパニー 大型本: 32ページ出版社: 学研プラス
 ヒゲの男「ボンボ」と、しっぽがタンバリンのライオン「ヤージュ」が、不思議な歌う地図に導かれ、大冒険をする絵本。</div>
@@ -439,7 +395,6 @@ a { text-decoration: none; color: inherit; }
     </a>
     <a class="card" href="https://note.com/nocey/n/n768aab0f9870" target="_blank" rel="noopener">
       <div class="card-body">
-        <div class="card-cat">Note</div>
         <div class="card-title">異文化への好奇心を育む絵本 「ミランダの大ぼうけん」 すてき絵本レビュー#004</div>
         <div class="card-excerpt">「ミランダの大ぼうけん」作・絵： ジェームズ・メイヒュー訳： 佐藤 見果夢出版社： 評論社10歳くらいの女の子ミランダちゃんが、気球に乗って世界を旅する絵本です。続きをみる</div>
         <div class="card-date">2019.03.23</div>
@@ -447,7 +402,6 @@ a { text-decoration: none; color: inherit; }
     </a>
     <a class="card" href="https://note.com/nocey/n/n419c248a86fb" target="_blank" rel="noopener">
       <div class="card-body">
-        <div class="card-cat">Note</div>
         <div class="card-title">すてき絵本レビュー#003  「モーリーのすてきなおいしゃさんバッグ」</div>
         <div class="card-excerpt">「モーリーのすてきなおいしゃさんバッグ」ミリアム・モス  (著)デボラ・オールライト (イラスト)浜崎 絵梨 (翻訳)単行本: 24ページ出版社: ひさかたチャイルド 続きをみる</div>
         <div class="card-date">2019.03.10</div>
@@ -455,7 +409,6 @@ a { text-decoration: none; color: inherit; }
     </a>
     <a class="card" href="https://note.com/nocey/n/n55fa1751c14e" target="_blank" rel="noopener">
       <div class="card-body">
-        <div class="card-cat">Note</div>
         <div class="card-title">すてき絵本レビュー#002 「川をのぼって森の中へ」</div>
         <div class="card-excerpt">「川をのぼって森の中へ」写真・文：今森 光彦単行本: 40ページ出版社: 偕成社 川をのぼって森？　なんとなく分かるけど、耳慣れない感覚。そうです。この絵本の舞台は、インドネシアのボルネオ島。(日本み</div>
         <div class="card-date">2019.03.06</div>
@@ -463,7 +416,6 @@ a { text-decoration: none; color: inherit; }
     </a>
     <a class="card" href="https://note.com/nocey/n/n6a6191e7f9aa" target="_blank" rel="noopener">
       <div class="card-body">
-        <div class="card-cat">Note</div>
         <div class="card-title">すてき絵本レビュー#001 「あけるな」</div>
         <div class="card-excerpt">「あけるな」作： 谷川 俊太郎絵： 安野 光雅出版社： 復刊ドットコム不思議な世界に入る、不思議な扉の話です。不思議な世界なので、内容の因果関係はありません。&lt;何があるか分からない恐怖&gt;と</div>
         <div class="card-date">2019.03.03</div>
@@ -472,15 +424,17 @@ a { text-decoration: none; color: inherit; }
   </div>
   
 </main>
+</div>
 
 <footer class="footer">
-  <div class="footer-l">© 2026 Nose x Note</div>
-  <a class="footer-r" href="https://note.com/nocey" target="_blank" rel="noopener">
-    ↗ noteでもフォロー
-  </a>
+  <div class="footer-inner">
+    <div class="footer-l">© 2026 Nose x Note</div>
+    <a class="footer-r" href="https://note.com/nocey" target="_blank" rel="noopener">
+      ↗ noteでもフォロー
+    </a>
+  </div>
 </footer>
-<p class="updated">最終更新: 2026/5/14 7:26:11</p>
-</div>
+<p class="updated">最終更新: 2026/5/14 7:44:53</p>
 
 </body>
 </html>
