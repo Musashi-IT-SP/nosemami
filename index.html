@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>nocey</title>
-<meta name="description" content="nocey — noteの記事を独自ドメインで読む">
-<meta property="og:title" content="nocey">
+<title>Nose x Note</title>
+<meta name="description" content="Nose x Note — noteの記事を独自ドメインで読む">
+<meta property="og:title" content="Nose x Note">
 <meta property="og:url" content="https://nosemami.com">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://nosemami.com">
@@ -34,6 +34,11 @@ body {
   background: #fff;
   color: var(--text);
   min-height: 100vh;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -89,6 +94,7 @@ a { text-decoration: none; color: inherit; }
   flex-direction: column;
   justify-content: space-between;
   min-height: 300px;
+  max-width: 800px;
 }
 
 .hero-eyebrow {
@@ -115,7 +121,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-title {
-  font-size: 40px;
+  font-size: 48px;
   font-weight: 900;
   line-height: 1.35;
   color: var(--text);
@@ -264,7 +270,6 @@ a { text-decoration: none; color: inherit; }
 
 .card {
   display: block;
-  padding: 28px 28px;
   border-right: 0.5px solid var(--border);
   border-top: 0.5px solid var(--border);
   cursor: pointer;
@@ -288,12 +293,38 @@ a { text-decoration: none; color: inherit; }
 .card:hover { background: var(--blue-bg); }
 .card:nth-child(3n) { border-right: none; }
 
-.card-num {
+.card-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--blue-pale);
+}
+
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.card:hover .card-img img { transform: scale(1.03); }
+
+.card-img--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-img--empty span {
   font-family: var(--font-serif);
-  font-size: 36px;
-  color: var(--blue-pale);
+  font-size: 40px;
+  color: var(--blue-light);
   line-height: 1;
-  margin-bottom: 10px;
+}
+
+.card-body {
+  padding: 20px 24px 24px;
 }
 
 .card-cat {
@@ -382,8 +413,9 @@ a { text-decoration: none; color: inherit; }
 </head>
 <body>
 
+<div class="wrap">
 <header class="hdr">
-  <a class="hdr-logo" href="/">nocey</a>
+  <a class="hdr-logo" href="/">Nose x Note</a>
   <nav class="hdr-nav">
     <a href="/">記事一覧</a>
     <a href="https://note.com/nocey" target="_blank" rel="noopener">noteを見る</a>
@@ -414,9 +446,11 @@ a { text-decoration: none; color: inherit; }
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-right-num">01</div>
-      <div class="hero-right-label">Latest<br>Article</div>
-      <div class="hero-right-date">2019.05.22</div>
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0;padding:24px 16px;">
+            <div style="font-family:var(--font-serif);font-size:96px;color:rgba(255,255,255,0.12);line-height:1;letter-spacing:-0.04em;user-select:none;">01</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.24em;color:rgba(255,255,255,0.45);text-transform:uppercase;text-align:center;margin-top:10px;">Latest<br>Article</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.65);margin-top:24px;letter-spacing:0.08em;writing-mode:vertical-rl;">2019.05.22</div>
+           </div>
     </div>
   </section>
 
@@ -430,52 +464,63 @@ a { text-decoration: none; color: inherit; }
   <div class="grid">
     
     <a class="card" href="https://note.com/nocey/n/neab38801f216" target="_blank" rel="noopener">
-      <div class="card-num">02</div>
-      <div class="card-cat">Note</div>
-      <div class="card-title">奇想天外な世界で想像力と冒険心を育む絵本「ボンボとヤージュ」</div>
-      <div class="card-excerpt">「ボンボとヤージュ」著：ザ・キャビンカンパニー 大型本: 32ページ出版社: 学研プラス
+      <div class="card-img card-img--empty"><span>02</span></div>
+      <div class="card-body">
+        <div class="card-cat">Note</div>
+        <div class="card-title">奇想天外な世界で想像力と冒険心を育む絵本「ボンボとヤージュ」</div>
+        <div class="card-excerpt">「ボンボとヤージュ」著：ザ・キャビンカンパニー 大型本: 32ページ出版社: 学研プラス
 ヒゲの男「ボンボ」と、しっぽがタンバリンのライオン「ヤージュ」が、不思議な歌う地図に導かれ、大冒険をする絵本。</div>
-      <div class="card-date">2019.05.17</div>
+        <div class="card-date">2019.05.17</div>
+      </div>
     </a>
     <a class="card" href="https://note.com/nocey/n/n768aab0f9870" target="_blank" rel="noopener">
-      <div class="card-num">03</div>
-      <div class="card-cat">Note</div>
-      <div class="card-title">異文化への好奇心を育む絵本 「ミランダの大ぼうけん」 すてき絵本レビュー#004</div>
-      <div class="card-excerpt">「ミランダの大ぼうけん」作・絵： ジェームズ・メイヒュー訳： 佐藤 見果夢出版社： 評論社10歳くらいの女の子ミランダちゃんが、気球に乗って世界を旅する絵本です。続きをみる</div>
-      <div class="card-date">2019.03.23</div>
+      <div class="card-img card-img--empty"><span>03</span></div>
+      <div class="card-body">
+        <div class="card-cat">Note</div>
+        <div class="card-title">異文化への好奇心を育む絵本 「ミランダの大ぼうけん」 すてき絵本レビュー#004</div>
+        <div class="card-excerpt">「ミランダの大ぼうけん」作・絵： ジェームズ・メイヒュー訳： 佐藤 見果夢出版社： 評論社10歳くらいの女の子ミランダちゃんが、気球に乗って世界を旅する絵本です。続きをみる</div>
+        <div class="card-date">2019.03.23</div>
+      </div>
     </a>
     <a class="card" href="https://note.com/nocey/n/n419c248a86fb" target="_blank" rel="noopener">
-      <div class="card-num">04</div>
-      <div class="card-cat">Note</div>
-      <div class="card-title">すてき絵本レビュー#003  「モーリーのすてきなおいしゃさんバッグ」</div>
-      <div class="card-excerpt">「モーリーのすてきなおいしゃさんバッグ」ミリアム・モス  (著)デボラ・オールライト (イラスト)浜崎 絵梨 (翻訳)単行本: 24ページ出版社: ひさかたチャイルド 続きをみる</div>
-      <div class="card-date">2019.03.10</div>
+      <div class="card-img card-img--empty"><span>04</span></div>
+      <div class="card-body">
+        <div class="card-cat">Note</div>
+        <div class="card-title">すてき絵本レビュー#003  「モーリーのすてきなおいしゃさんバッグ」</div>
+        <div class="card-excerpt">「モーリーのすてきなおいしゃさんバッグ」ミリアム・モス  (著)デボラ・オールライト (イラスト)浜崎 絵梨 (翻訳)単行本: 24ページ出版社: ひさかたチャイルド 続きをみる</div>
+        <div class="card-date">2019.03.10</div>
+      </div>
     </a>
     <a class="card" href="https://note.com/nocey/n/n55fa1751c14e" target="_blank" rel="noopener">
-      <div class="card-num">05</div>
-      <div class="card-cat">Note</div>
-      <div class="card-title">すてき絵本レビュー#002 「川をのぼって森の中へ」</div>
-      <div class="card-excerpt">「川をのぼって森の中へ」写真・文：今森 光彦単行本: 40ページ出版社: 偕成社 川をのぼって森？　なんとなく分かるけど、耳慣れない感覚。そうです。この絵本の舞台は、インドネシアのボルネオ島。(日本み</div>
-      <div class="card-date">2019.03.06</div>
+      <div class="card-img card-img--empty"><span>05</span></div>
+      <div class="card-body">
+        <div class="card-cat">Note</div>
+        <div class="card-title">すてき絵本レビュー#002 「川をのぼって森の中へ」</div>
+        <div class="card-excerpt">「川をのぼって森の中へ」写真・文：今森 光彦単行本: 40ページ出版社: 偕成社 川をのぼって森？　なんとなく分かるけど、耳慣れない感覚。そうです。この絵本の舞台は、インドネシアのボルネオ島。(日本み</div>
+        <div class="card-date">2019.03.06</div>
+      </div>
     </a>
     <a class="card" href="https://note.com/nocey/n/n6a6191e7f9aa" target="_blank" rel="noopener">
-      <div class="card-num">06</div>
-      <div class="card-cat">Note</div>
-      <div class="card-title">すてき絵本レビュー#001 「あけるな」</div>
-      <div class="card-excerpt">「あけるな」作： 谷川 俊太郎絵： 安野 光雅出版社： 復刊ドットコム不思議な世界に入る、不思議な扉の話です。不思議な世界なので、内容の因果関係はありません。&lt;何があるか分からない恐怖&gt;と</div>
-      <div class="card-date">2019.03.03</div>
+      <div class="card-img card-img--empty"><span>06</span></div>
+      <div class="card-body">
+        <div class="card-cat">Note</div>
+        <div class="card-title">すてき絵本レビュー#001 「あけるな」</div>
+        <div class="card-excerpt">「あけるな」作： 谷川 俊太郎絵： 安野 光雅出版社： 復刊ドットコム不思議な世界に入る、不思議な扉の話です。不思議な世界なので、内容の因果関係はありません。&lt;何があるか分からない恐怖&gt;と</div>
+        <div class="card-date">2019.03.03</div>
+      </div>
     </a>
   </div>
   
 </main>
 
 <footer class="footer">
-  <div class="footer-l">© 2026 nocey</div>
+  <div class="footer-l">© 2026 Nose x Note</div>
   <a class="footer-r" href="https://note.com/nocey" target="_blank" rel="noopener">
     ↗ noteでもフォロー
   </a>
 </footer>
-<p class="updated">最終更新: 2026/5/14 5:50:40</p>
+<p class="updated">最終更新: 2026/5/14 7:14:29</p>
+</div>
 
 </body>
 </html>
