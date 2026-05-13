@@ -87,10 +87,6 @@ try {
 function articleCards(list) {
   return list.map(a => `
     <a class="card" href="${a.link}" target="_blank" rel="noopener">
-      ${a.image
-        ? `<div class="card-img"><img src="${a.image}" alt="${a.title}" loading="lazy"></div>`
-        : `<div class="card-img card-img--empty"><span>${String(a.index).padStart(2,'0')}</span></div>`
-      }
       <div class="card-body">
         <div class="card-cat">${a.category}</div>
         <div class="card-title">${a.title}</div>
@@ -416,36 +412,6 @@ a { text-decoration: none; color: inherit; }
 .card:hover::after { transform: scaleX(1); }
 .card:hover { background: var(--blue-bg); }
 .card:nth-child(3n) { border-right: none; }
-
-.card-img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: var(--blue-pale);
-}
-
-.card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  display: block;
-}
-
-.card:hover .card-img img { transform: scale(1.03); }
-
-.card-img--empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-img--empty span {
-  font-family: var(--font-serif);
-  font-size: 40px;
-  color: var(--blue-light);
-  line-height: 1;
-}
 
 .card-body {
   padding: 20px 24px 24px;
