@@ -1,0 +1,9 @@
+{
+  "name": "nosemami-site",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "fast-xml-parser": "^4.3.6",
+    "node-fetch": "^3.3.2"
+  }
+}
